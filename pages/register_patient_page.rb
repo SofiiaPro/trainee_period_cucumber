@@ -1,5 +1,8 @@
 class Register_Patient_Page
-  attr_accessor :name_field, :surname_field, :next_button, :gender_field
+  attr_accessor :name_field, :surname_field, :gender_field, :estimated_years_field, :address_field,
+                :city_field, :state_field, :country_field, :postal_code_field, :phone_number_field,
+                :relationship_type_field, :relative_person_name_field, :confirm_button, :next_button,
+                :patient_name_in_register, :patient_surname_in_register
 
   def initialize(browser)
     @browser = browser

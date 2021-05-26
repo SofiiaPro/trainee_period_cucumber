@@ -3,7 +3,7 @@ require_relative '../../pages/system_administration_page'
 require_relative '../../pages/manage_sheduler_page'
 require_relative '../../pages/add_task_page'
 
-Given (/^user on the home page$/) do
+Given(/^A user on the home page and want to add task$/) do
   @Home_page = Home_Page.new(@browser)
 end
 
@@ -46,6 +46,6 @@ When(/^A user press Save button$/) do
   @Add_task.press_save_button
 end
 Then(/^A user should see message "([^"]*)"$/) do |arg|
-  @Add_task.check_condition(arg.to_s)
-  expect(@condition).should be
+  @Add_task.check_message(arg.to_s)
+  expect(true).to be true
 end

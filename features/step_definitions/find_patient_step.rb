@@ -1,6 +1,7 @@
 require_relative '../../pages/home_page'
+require_relative '../../pages/find_patient_page'
 
-Given(/^A user on the home page$/) do
+Given(/^A user on the home page and want to find patient$/) do
   @Home_page = Home_Page.new(@browser)
 end
 
@@ -19,9 +20,11 @@ And(/^A user verify that table contains required columns "([^"]*)", "([^"]*)", "
 end
 
 When(/^A user verify that columns are not empty$/) do
-  pending
+  @Find_patient_page.check_columns_filling
+  expect(true).to be true
 end
 
-Then(/^A user can see information about patient$/) do
-  pending
+Then(/^A user should see patient "([^"]*)" in patient record$/) do |arg|
+  @Find_patient_page.check_record_patient_information(arg.to_s)
+  expect(true).to be true
 end

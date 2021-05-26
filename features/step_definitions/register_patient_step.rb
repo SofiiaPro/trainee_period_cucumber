@@ -1,7 +1,7 @@
 require_relative '../../pages/home_page'
 require_relative '../../pages/register_patient_page'
 
-Given(/^A user on home page$/) do
+Given(/^A user on home page and want to register a new patient$/) do
   @Home_page = Home_Page.new(@browser)
 end
 

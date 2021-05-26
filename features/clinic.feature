@@ -9,15 +9,15 @@ Feature: Login in Clinic functionality
     Then A user should be on the users home page and see "Logged in"
   
   Scenario: Find Patient
-    Given A user on the home page
+    Given A user on the home page and want to find patient
     And A user navigate to Find Patient Record
     And A user fill Search Field with "John Smith"
     And A user verify that table contains required columns "Identifier", "Name", "Gender", "Age" "Birthdate"
     When A user verify that columns are not empty
-    Then A user can see information about patient
+    Then A user should see patient "John Smith" in patient record
   
   Scenario: Register a new patient
-    Given A user on the home page
+    Given A user on the home page and want to register a new patient
     And A user navigate to Register a Patient page
     And A user determine Demography by filling Name Field with "Mark"
     And A user fill Surname Field with "Smith" and press Enter
@@ -35,7 +35,7 @@ Feature: Login in Clinic functionality
     Then A user should see patient name "Mark" and surname "Smith" in register
     
   Scenario: Add task in System Administration Manage Schedule
-    Given A user on the home page
+    Given A user on the home page and want to add task
     And A user navigate to System Administration page
     And A user choose Manage Scheduler
     And A user press Add Tasks button
@@ -48,13 +48,13 @@ Feature: Login in Clinic functionality
     Then A user should see message "Task definition saved successfully."
       
     Scenario: Merge records for two patients
-     Given A user on the home page
+     Given A user on the home page and want to merge patient's record
      And A user navigate to Data Management page
      And A user navigate to Merge Patient Electronic Records
-     And A user fill in first person id field with "100HPW"
-     And A user fill in second person id field with "100HTR"
-     And A user press Merge button
+     And A user fill in first person id field with "100HM1"
+     And A user fill in second person id field with "100HNY"
+     And A user press Continue button
      And A user select the preferred record by click on the second patient data
      When A user press continue button
-     Then A user should see two patient id at the page
+     Then A user should see two patients id: "100HM1" and "100HNY" at the page
      

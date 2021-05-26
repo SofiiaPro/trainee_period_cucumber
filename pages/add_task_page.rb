@@ -39,7 +39,7 @@ class Add_Task_Page
     @save_button.click
   end
 
-  def check_condition(message)
+  def check_message(message)
     true if @created_task_message == message
   end
 end

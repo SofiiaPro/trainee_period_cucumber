@@ -1,7 +1,7 @@
 require_relative '../../pages/login_page'
 
 Given(/^A user is on the login page$/) do
-  @login_page = Login_Page.new(@browser)
+  @login_page = LoginPage.new(@browser)
   @login_page.navigate_to_login_page
 end
 And(/^A user fills in Username with "([^"]*)"$/) do |arg|
@@ -21,5 +21,5 @@ When(/^A user presses Login in button$/) do
 end
 
 Then(/^A user should be on the users home page and see "([^"]*)"$/) do |arg|
-  @login_page.verify_home_page_header(arg.to_s)
+  @login_page.compare_home_page_headers(arg.to_s)
 end

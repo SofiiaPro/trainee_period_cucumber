@@ -1,35 +1,62 @@
-class Find_Patient_Page
-  attr_accessor :patient_name_field, :identifier_field, :name_field, :gender_field, :age_field, :birthday_field
-  :patient_name_in_record
+class FindPatientPage
 
   def initialize(browser)
     @browser = browser
-    @patient_name_field = @browser.text_field(xpath: "//input[@id='patient-search']")
-    @identifier_field = @browser.text_field(text: "Identifier")
-    @name_field = @browser.text_field(text: "Name")
-    @gender_field = @browser.text_field(text: "Gender")
-    @age_field = @browser.text_field(text: "Age")
-    @birthday_field = @browser.text_field(text: "Birthdate")
-    @patient_name_in_record = @browser.element(xpath: "//td[@xpath='2']")
   end
 
-  def enter_patient_name(patient_name)
-    @patient_name_field.set patient_name
+  def get_patient_name_field
+    @browser.text_field(xpath: "//input[@id='patient-search']")
   end
 
-  def check_required_columns(identifier, name, gender, age, birthdate)
-    true if @identifier_field == identifier || (@name_field = name || @gender_field == gender || (@age_field = age ||
-      (@birthday_field = birthdate)))
+  def get_identifier_field
+    @browser.text_field(text: "Identifier")
+  end
+
+  def get_name_field
+    @browser.text_field(text: "Name")
+  end
+
+  def get_gender_field
+    @browser.text_field(text: "Gender")
+  end
+
+  def get_age_field
+    @browser.text_field(text: "Age")
+  end
+
+  def get_birthday_field
+    @browser.text_field(text: "Birthdate")
+  end
+
+  def get_patient_name_in_record
+    @browser.element(xpath: "//td[@xpath='2']")
+  end
+
+  def enter_patient_name(arg)
+    patient_name_field = get_patient_name_field
+    patient_name_field.set arg
+  end
+
+  def check_required_columns(arg1, arg2, arg3, arg4, arg5)
+    identifier_field = get_identifier_field
+    name_field = get_name_field
+    gender_field = get_gender_field
+    age_field = get_age_field
+    birthday_field = get_birthday_field
+
+    true if identifier_field == arg1 || (name_field = arg2 || gender_field == arg3 || (age_field = arg4 ||
+      (birthday_field = arg5)))
   end
 
   def check_columns_filling
     table = @browser.element(xpath: '//tbody/tr[1]/td')
     table.select do |element|
-      true if element != nil
+      true unless element.nil?
     end
   end
 
   def check_record_patient_information(patient_name)
-    true if @patient_name_in_record == patient_name
+    patient_name_in_record = get_patient_name_in_record
+    patient_name_in_record == patient_name
     end
 end

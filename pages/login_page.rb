@@ -1,38 +1,51 @@
-class Login_Page
-  attr_accessor :loginTab, :username, :password, :login_button, :session_location
+class LoginPage
 
   def initialize(browser)
     @browser = browser
-    @username = @browser.text_field(id: "username")
-    @password = @browser.text_field(id: "password")
-    @login_button = @browser.input(id: "loginButton")
-    @session_location = @browser.li(text: "Outpatient Clinic")
+  end
+
+  def get_username
+    @browser.text_field(id: "username")
+  end
+
+  def get_password
+    @browser.text_field(id: "password")
+  end
+
+  def get_login_button
+    @browser.input(id: "loginButton")
+  end
+
+  def get_session_location
+    @browser.li(text: "Outpatient Clinic")
   end
 
   def navigate_to_login_page
     @browser.goto "https://demo.openmrs.org/openmrs/login.htm"
   end
 
-  def enter_username(username)
-    @username.set username
+  def enter_username(arg)
+    username = get_username
+    username.set arg
   end
 
-  def enter_password(password)
-    @password.set password
+  def enter_password(arg)
+    password = get_password
+    password.set arg
   end
 
   def choose_location
-    @session_location.click
+    session_location = get_session_location
+    session_location.click
   end
 
   def click_on_login_button
-    @login_button.click
+    login_button = get_login_button
+    login_button.click
   end
 
-  def verify_home_page_header(text)
+  def compare_home_page_headers(text)
     page_output = @browser.element(text: "Logged in")
-    if page_output == text
-      puts "A user is on home page"
-    end
+    page_output == text
   end
 end

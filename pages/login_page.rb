@@ -9,7 +9,7 @@ class Login_Page
     @session_location = @browser.li(text: "Outpatient Clinic")
   end
 
-  def navigate_to_manage_scheduler_page
+  def navigate_to_login_page
     @browser.goto "https://demo.openmrs.org/openmrs/login.htm"
   end
 

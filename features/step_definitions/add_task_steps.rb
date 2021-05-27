@@ -2,50 +2,44 @@ require_relative '../../pages/home_page'
 require_relative '../../pages/system_administration_page'
 require_relative '../../pages/manage_sheduler_page'
 require_relative '../../pages/add_task_page'
+require 'pry'
 
-Given(/^A user on the home page and want to add task$/) do
-  @Home_page = Home_Page.new(@browser)
-end
-
-And(/^A user navigate to System Administration page$/) do
-  @Home_page.navigate_to_system_administration_page
-  @System_Administration = System_Administration_Page.new(@browser)
+Given(/^a user on the home page and wants to add task$/) do
+  @home_page = Home_Page.new(@browser)
 end
 
-And(/^A user choose Manage Scheduler$/) do
-  @System_Administration.navigate_to_manage_scheduler_page
+And(/^a user navigates to the System Administration page$/) do
+  @home_page.navigate_to_system_administration_page
+  @system_administration = System_Administration_Page.new(@browser)
 end
 
-And(/^A user press Add Tasks button$/) do
-  @Manage_Schedule = Manage_Schedule_Page.new(@browser)
-  @Manage_Schedule.press_add_tasks_button
+And(/^a user chooses the Manage Scheduler option$/) do
+  @system_administration.navigate_to_manage_scheduler_page
 end
 
-And(/^A user fill in Name with "([^"]*)"$/) do |arg|
-  @Add_task = Add_Task_Page.new(@browser)
-  @Add_task.enter_task_name(arg.to_s)
+And(/^a user presses Add Tasks button$/) do
+  @manage_schedule = Manage_Schedule_Page.new(@browser)
+  @manage_schedule.press_add_tasks_button
 end
 
-And(/A user choose schedulable class "([^"]*)"$/) do |arg|
-  @Add_task.choose_shedulable_class(arg.to_s)
+And(/^a user fills task configuration with (.*) (.*)$/) do |task_name, schedule_class, |
+  @add_task = Add_Task_Page.new(@browser)
+  @add_task.enter_task_name(task_name.to_s)
+  @add_task.choose_schedule_class(schedule_class.to_s)
 end
 
-And(/^A user fill in Description with "([^"]*)"$/) do |arg|
-  @Add_task.enter_task_description(arg.to_s)
+And(/^a user fill (.*) (.*) (.*)$/) do |description, start_time, repeat_interval|
+  @add_task.enter_task_description(description.to_s)
+  @add_task.enter_start_time(start_time.to_s)
+  @add_task.enter_repeat_interval(repeat_interval.to_s)
 end
 
-And(/^A user fill in Start time with "([^"]*)"$/) do |arg|
-  @Add_task.enter_start_time(arg.to_s)
+
+When(/^a user press Save button$/) do
+  @add_task.press_save_button
 end
 
-And(/^A user fill in Repeat interval with "([^"]*)"$/) do |arg|
-  @Add_task.enter_repeat_interval(arg.to_s)
+Then(/^a user should see message (.*)$/) do |message|
+  expect(@add_task.task_message_exist?(message)).to be true
 end
 
-When(/^A user press Save button$/) do
-  @Add_task.press_save_button
-end
-Then(/^A user should see message "([^"]*)"$/) do |arg|
-  @Add_task.check_message(arg.to_s)
-  expect(true).to be true
-end

@@ -66,7 +66,7 @@ class Register_Patient_Page
 
   def choose_patient_relationship_type(relationship_type)
     @relationship_type_field.click
-    chosen_relationship_type = @browser.option(text: relationship_type)
+    chosen_relationship_type = @browser.option(xpath: "//select//option[contains(text(), #{relationship_type})]")
     chosen_relationship_type.click
   end
 

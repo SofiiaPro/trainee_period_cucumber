@@ -20,7 +20,6 @@ Feature: Login in Clinic functionality
     | name       | message |
     | John Smith | Showing |
     
-    
   Scenario Outline: Register a new patient
     Given a user on the home page and wants to register a new patient
     And a user navigates to Register a Patient page
@@ -47,8 +46,8 @@ Feature: Login in Clinic functionality
     Then a user should see <message> on the page
     
     Examples:
-    | task_name | schedule_class                                      | description  | start_time               | repeat_interval     | message                               |
-    | task1     | org.openmrs.scheduler.tasks.ProcessHL7InQueueTask   | description1 | 2021-03-20 12:12:00.000  | 1                   | "Task definition saved successfully." |
+    | task_name | schedule_class                                      | description  | start_time               | repeat_interval     | message      |
+    | task1     | org.openmrs.scheduler.tasks.ProcessHL7InQueueTask   | description1 | 2021-03-20 12:12:00.000  | 1                   | successfully |
     
     
     Scenario Outline: Merge records for two patients
@@ -63,5 +62,4 @@ Feature: Login in Clinic functionality
      Examples:
       | first_person_id | second_person_id |
       | 100HM1          | 100HNY           |
-      
       

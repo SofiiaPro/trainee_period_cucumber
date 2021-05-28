@@ -58,5 +58,9 @@ class AddTaskPage
   def press_save_button
     save_button = get_save_button
     save_button.click
-    end
+  end
+
+  def get_page_accepted_message
+    @browser.element(xpath: "//div[@ng-if='isValidationError==false']").text
+  end
   end

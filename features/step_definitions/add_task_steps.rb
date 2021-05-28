@@ -38,7 +38,7 @@ When(/^a user presses Save button$/) do
   @add_task.press_save_button
 end
 
-Then(/^a user should see (.*) on the page$/) do |message|
-  expect(@browser.text.include?(message)).to be true
+Then(/^a user should see (.*) on the page$/) do |expected_message|
+  expect(@add_task.get_page_accepted_message.include?(expected_message)).to be true
 end
 

@@ -52,7 +52,7 @@ class FindPatientPage
   def check_columns_filling
     table = @browser.element(xpath: '//tbody/tr[1]/td')
     true if table.select do |element|
-    element.text.length.positive?
-end
+      element.text.length.positive?
+    end
   end
 end

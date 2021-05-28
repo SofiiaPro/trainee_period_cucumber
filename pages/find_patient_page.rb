@@ -53,6 +53,6 @@ class FindPatientPage
     table = @browser.element(xpath: '//tbody/tr[1]/td')
     true if table.select do |element|
     element.text.length.positive?
-            end
+end
   end
 end

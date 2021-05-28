@@ -24,7 +24,7 @@ When(/^verify that columns are not empty$/) do
   expect(@find_patient_page.check_columns_filling).to be true
 end
 
-Then(/^a user should see patient (.*) in patient record$/) do |name|
-  expect(@browser.text.include?(name)).to be true
+Then(/^a user should see patient (.*) in patient record$/) do |message|
+  expect(@browser.text.include?(message)).to be true
 end
 

@@ -14,11 +14,11 @@ Feature: Login in Clinic functionality
     And a user fills Search Field with <name>
     And verify that table contains required columns "Identifier", "Name", "Gender", "Age" "Birthdate"
     When verify that columns are not empty
-    Then a user should see patient <name> in patient record
+    Then a user should see patient <message> in patient record
     
     Examples:
-    | name       |
-    | John Smith |
+    | name       | message |
+    | John Smith | Showing |
     
     
   Scenario Outline: Register a new patient

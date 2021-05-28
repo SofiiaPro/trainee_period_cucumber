@@ -17,8 +17,8 @@ end
 
 And(/^a user enters persons' ids (.*) (.*)$/) do |first_person_id, second_person_id|
   @merge_patient_record_page = MergePatientRecordPage.new(@browser)
-  @merge_patient_record_page.enter_first_patient_id(first_person_id.to_s)
-  @merge_patient_record_page.enter_second_patient_id(second_person_id.to_s)
+  @merge_patient_record_page.enter_first_patient_id(first_person_id)
+  @merge_patient_record_page.enter_second_patient_id(second_person_id)
 end
 
 And(/^a user presses Continue button$/) do
@@ -34,6 +34,6 @@ When(/^a user presses continue button$/) do
 end
 
 Then(/^a user should see two patients id: (.*) and (.*) at the page$/) do |first_person_id, second_person_id|
-  expect(@merge_patient_record_page.compare_page_ids_with_expected_ids(first_person_id.to_s, second_person_id.to_s)).to
-  be true
+  expect(@browser.text.include?(first_person_id)).to be true
+  expect(@browser.text.include?(second_person_id)).to be true
 end

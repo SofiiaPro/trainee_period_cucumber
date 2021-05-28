@@ -7,7 +7,7 @@ Feature: Login in Clinic functionality
     And A user chooses Outpatient Clinic location for the session
     When A user presses Login in button
     Then A user should be on the users home page and see "Logged in"
-    
+  
   Scenario Outline: Find Patient
     Given a user is on the home page and wants to find patient
     And a user navigates to Find Patient Record
@@ -17,8 +17,8 @@ Feature: Login in Clinic functionality
     Then a user should see patient <name> in patient record
     
     Examples:
-    | name          |
-    | John Smith    |
+    | name       |
+    | John Smith |
     
     
   Scenario Outline: Register a new patient
@@ -33,7 +33,7 @@ Feature: Login in Clinic functionality
     
     Examples:
       | name | surname | years | address         | city     | state    | country | postal_code | phone_number | relationship_type | relative_person_name |
-      | Mark | Smith   | 35    | 17 State Street | New York | New York | US      | 10004       | 458000487    | Child             | Kate Smith           |
+      | Mark | Smith   | 35    | 17 State Street | New York | New York | US      | 10004       | 458000487    | Doctor            | Kate Smith           |
 
   
   Scenario Outline: Add task in System Administration Manage Schedule
@@ -41,14 +41,14 @@ Feature: Login in Clinic functionality
     And a user navigates to the System Administration page
     And a user chooses the Manage Scheduler option
     And a user presses Add Tasks button
-    And a user fills task configuration with <task_name> <schedule_class>
-    And a user fills <description> <start_time> <repeat_interval>
+    And a user fills task configuration with <task_name> <schedule_class> <description>
+    And A user fills task Schedule with <start_time> <repeat_interval>
     When a user presses Save button
     Then a user should see <message> on the page
     
     Examples:
-    | task_name | schedule_class                                  | description  | start_time               | repeat_interval     | message                             |
-    | task1     | org.openmrs.scheduler.tasks.AutoCloseVisitsTask | description1 | 2021-03-20 12:12:00.000  | 1                   | Task definition saved successfully. |
+    | task_name | schedule_class                                      | description  | start_time               | repeat_interval     | message                               |
+    | task1     | org.openmrs.scheduler.tasks.ProcessHL7InQueueTask   | description1 | 2021-03-20 12:12:00.000  | 1                   | "Task definition saved successfully." |
     
     
     Scenario Outline: Merge records for two patients
@@ -63,3 +63,5 @@ Feature: Login in Clinic functionality
      Examples:
       | first_person_id | second_person_id |
       | 100HM1          | 100HNY           |
+      
+      

@@ -1,5 +1,6 @@
 require_relative '../../pages/home_page'
 require_relative '../../pages/find_patient_page'
+require 'pry'
 
 Given(/^a user is on the home page and wants to find patient$/) do
   @home_page = HomePage.new(@browser)
@@ -24,5 +25,6 @@ When(/^verify that columns are not empty$/) do
 end
 
 Then(/^a user should see patient (.*) in patient record$/) do |name|
-  expect(@find_patient_page.check_record_patient_information(name.to_s)).to be true
+  expect(@browser.text.include?(name)).to be true
 end
+

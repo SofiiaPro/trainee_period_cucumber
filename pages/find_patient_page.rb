@@ -1,3 +1,4 @@
+require 'pry'
 class FindPatientPage
 
   def initialize(browser)
@@ -44,19 +45,14 @@ class FindPatientPage
     age_field = get_age_field
     birthday_field = get_birthday_field
 
-    true if identifier_field == arg1 || (name_field = arg2 || gender_field == arg3 || (age_field = arg4 ||
-      (birthday_field = arg5)))
+    true if (identifier_field == arg1) || (name_field == arg2) || (gender_field == arg3) || (age_field == arg4) ||
+      (birthday_field == arg5)
   end
 
   def check_columns_filling
     table = @browser.element(xpath: '//tbody/tr[1]/td')
-    table.select do |element|
-      true unless element.nil?
-    end
+    true if table.select do |element|
+    element.text.length.positive?
+            end
   end
-
-  def check_record_patient_information(patient_name)
-    patient_name_in_record = get_patient_name_in_record
-    patient_name_in_record == patient_name
-    end
 end
